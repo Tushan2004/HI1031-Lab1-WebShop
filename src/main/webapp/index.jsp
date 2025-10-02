@@ -1,6 +1,6 @@
-
 <html>
 <body>
-<h2>Martin</h2>
+<h2>WebShop</h2>
+<p><a href="login.jsp">Login</a></p>
 </body>
 </html>
