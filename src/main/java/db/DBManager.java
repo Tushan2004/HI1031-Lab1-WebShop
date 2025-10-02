@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBManager {
-    // Singleton-instans
+
     private static DBManager instance = null;
     private Connection con = null;
 
-    // Privata getInstance-metoden
     private static DBManager getInstance() {
         if (instance == null) {
             instance = new DBManager();
@@ -17,10 +16,8 @@ public class DBManager {
         return instance;
     }
 
-    // Privat konstruktor
     private DBManager() {
         try {
-            // Ladda MySQL JDBC-driver
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
             // Skapa anslutning
@@ -34,7 +31,6 @@ public class DBManager {
         }
     }
 
-    // Publik metod för att hämta connection
     public static Connection getConnection() {
         return getInstance().con;
     }
