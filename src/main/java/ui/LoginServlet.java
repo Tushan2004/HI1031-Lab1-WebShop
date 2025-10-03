@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/login") // matchar action i login.jsp
 public class LoginServlet extends HttpServlet {
@@ -26,6 +27,12 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("user", user);
+
+        try {
+            db.loginDB.writeLoginToDB(username,password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }

@@ -26,7 +26,7 @@ public class DBManager {
             // Skapa anslutning
             String url = "jdbc:mysql://localhost:3306/webshop?serverTimezone=UTC&useSSL=false";
             String user = "root";
-            String password = "martin2004";
+            String password = "";
             con = DriverManager.getConnection(url, user, password);
 
         } catch (Exception e) {
