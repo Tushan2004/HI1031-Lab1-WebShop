@@ -1,37 +1,43 @@
 package bo;
 
-import db.ItemDB;
-
-import java.util.Collection;
-
 public class Item {
+    private int id;
     private String name;
     private String descr;
-    private int id;
+    private double price;
 
-    static public Collection searchItems(String group){
-        return ItemDB.searchItems(group);
-    }
-
-    protected Item(int id, String name, String desc){
+    public Item(int id, String name, String descr, double price) {
         this.id = id;
         this.name = name;
-        this.descr = desc;
+        this.descr = descr;
+        this.price = price;
     }
 
-    public String getName(){
-        return this.name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public String getDescr() {
         return descr;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setDescr(String descr) {
         this.descr = descr;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
