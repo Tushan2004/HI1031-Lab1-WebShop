@@ -7,7 +7,7 @@ public class userDB {
     public static String writeUserToDB(String username, String password) throws SQLException {
         Connection connection = DBManager.getConnection();
 
-        String sql = "INSERT INTO user (username, password) VALUES (?, ?)";
+        String sql = "INSERT INTO login (username, password) VALUES (?, ?)";
         PreparedStatement ps = connection.prepareStatement(sql);
 
         ps.setString(1, username);   // första ? blir username
@@ -23,7 +23,7 @@ public class userDB {
     }
 
     public static boolean searchUserInDB(String username, String password) {
-        String sql = "SELECT * FROM `user` WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM `login` WHERE username = ? AND password = ?";
 
         try (Connection connection = DBManager.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {

@@ -27,16 +27,18 @@ public class CartServlet extends HttpServlet {
         if ("add".equals(action)) {
             int id = Integer.parseInt(req.getParameter("id"));
             String name = req.getParameter("name");
+            String descr = req.getParameter("dresc");
             double price = Double.parseDouble(req.getParameter("price")); // endast för add
 
-            Item item = new Item(id, name, "Beskrivning här", price);
+            Item item = new Item(id, name, descr, price);
             cart.addItem(new CartItem(item, 1));
+
 
         } else if ("remove".equals(action)) {
             int id = Integer.parseInt(req.getParameter("id"));
             cart.removeItem(id);
         }
 
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect("webshop.jsp");
     }
 }

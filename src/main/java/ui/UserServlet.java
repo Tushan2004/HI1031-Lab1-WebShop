@@ -32,7 +32,7 @@ public class UserServlet extends HttpServlet {
         if (username == null || username.isBlank() ||
                 password == null || password.isBlank()) {
             req.setAttribute("error", "Please enter both username and password.");
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
             return;
         }
 
@@ -42,9 +42,9 @@ public class UserServlet extends HttpServlet {
 
         try {
             if (userDB.searchUserInDB(username, password)) {
-                req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                req.getRequestDispatcher("/webshop.jsp").forward(req, resp);
             } else {
-                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+                req.getRequestDispatcher("/index.jsp").forward(req, resp);
             }
         } catch (Exception e) {
             throw new ServletException("Database error", e);
@@ -59,7 +59,7 @@ public class UserServlet extends HttpServlet {
         if (username == null || username.isBlank() ||
                 password == null || password.isBlank()) {
             req.setAttribute("error", "Please enter both username and password.");
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
             return;
         }
 
@@ -73,7 +73,7 @@ public class UserServlet extends HttpServlet {
             throw new ServletException("Database error", e);
         }
 
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/webshop.jsp").forward(req, resp);
     }
 }
 
