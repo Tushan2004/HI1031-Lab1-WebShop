@@ -6,32 +6,21 @@ import java.sql.SQLException;
 
 public class DBManager {
 
-    private static DBManager instance = null;
-    private Connection con = null;
-
-    private static DBManager getInstance() {
-        if (instance == null) {
-            instance = new DBManager();
-        }
-        return instance;
-    }
-
-    private DBManager() {
+    static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-
-            // Skapa anslutning
-            String url = "jdbc:mysql://localhost:3306/webshop?serverTimezone=UTC&useSSL=false";
-            String user = "root";
-            String password = "martin2004";
-            con = DriverManager.getConnection(url, user, password);
-
-        } catch (Exception e) {
+            // Ladda MySQL JDBC-drivern (mycket viktigt)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public static Connection getConnection() {
-        return getInstance().con;
+    private static final String URL =
+            "jdbc:mysql://localhost:3306/webshop?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
+    private static final String USER = "root";
+    private static final String PASS = "";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASS);
     }
 }
