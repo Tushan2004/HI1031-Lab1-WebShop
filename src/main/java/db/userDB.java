@@ -32,7 +32,6 @@ public class userDB {
             ps.setString(2, password);
 
             try (ResultSet rs = ps.executeQuery()) {
-                // Om en rad hittas returnerar vi true
                 return rs.next();
             }
 
