@@ -5,6 +5,6 @@
 <body>
 <h2>Checkout</h2>
 <p>${message}</p>
-<p><a href="index.jsp">Tillbaka till webshop</a></p>
+<p><a href="index.jsp">Tillbaka till start</a></p>
 </body>
 </html>
