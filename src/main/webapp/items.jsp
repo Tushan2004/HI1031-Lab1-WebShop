@@ -1,4 +1,3 @@
-
 <html>
 <body>
 <c:forEach var="item" items="${items}">
