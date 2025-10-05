@@ -2,7 +2,7 @@
 <%@ page session="true" %>
 <html>
 <head>
-    <title>MT WebShop</title>
+    <title>WebShop</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,7 +68,7 @@
     </style>
 </head>
 <body>
-<h2>WebShop</h2>
+<h2>MT WebShop</h2>
 <p style="text-align:right;"><a href="orders">My orders</a></p>
 <p style="text-align:right;"><a href="index.jsp">Logga ut</a></p>
 <hr>
