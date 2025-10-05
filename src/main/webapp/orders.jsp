@@ -23,7 +23,6 @@
         <tr>
             <th>Order ID</th>
             <th>Produkt</th>
-            <th>Beskrivning</th>
             <th>Pris</th>
             <th>Antal</th>
             <th>Totalt</th>
@@ -32,7 +31,6 @@
             <tr>
                 <td>${order.id}</td>
                 <td>${order.name}</td>
-                <td>${order.descr}</td>
                 <td>${order.price} kr</td>
                 <td>${order.quantity}</td>
                 <td>${order.total} kr</td>
