@@ -2,7 +2,7 @@ package db;
 
 import java.sql.*;
 
-public class userDB {
+public class UserDB {
 
     public static String writeUserToDB(String username, String password) throws SQLException {
         Connection connection = DBManager.getConnection();
