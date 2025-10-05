@@ -1,7 +1,7 @@
 package ui;
 
 import bo.User; // din klass
-import db.userDB;
+import db.UserDB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +41,7 @@ public class UserServlet extends HttpServlet {
         session.setAttribute("user", user);
 
         try {
-            if (userDB.searchUserInDB(username, password)) {
+            if (UserDB.searchUserInDB(username, password)) {
                 req.getRequestDispatcher("/webshop.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -68,7 +68,7 @@ public class UserServlet extends HttpServlet {
         session.setAttribute("user", user);
 
         try {
-            userDB.writeUserToDB(username, password);
+            UserDB.writeUserToDB(username, password);
         } catch (Exception e) {
             throw new ServletException("Database error", e);
         }

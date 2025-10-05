@@ -19,7 +19,7 @@ public class CheckoutDB {
         }
 
         // 1️⃣ Hämta user_id från Login-tabellen
-        int userId = 0;
+        int userId;
         String userSql = "SELECT id FROM Login WHERE username = ? AND password = ?";
 
         try (Connection con = DBManager.getConnection();
@@ -37,14 +37,13 @@ public class CheckoutDB {
                 }
             }
 
-            // 2️⃣ Spara varorna i checkout-tabellen
             String sql = "INSERT INTO checkout (user_id, product_id, name, descr, price, quantity, total) VALUES (?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement ps = con.prepareStatement(sql)) {
 
                 for (CartItem item : items) {
                     Item product = item.getProduct();
 
-                    ps.setInt(1, userId);  // ✅ Här sätter vi user_id vi hittade
+                    ps.setInt(1, userId);
                     ps.setInt(2, product.getId());
                     ps.setString(3, product.getName());
                     ps.setString(4, product.getDescr());
