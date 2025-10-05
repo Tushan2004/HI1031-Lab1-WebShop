@@ -7,8 +7,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles database operations related to orders.
+ */
 public class OrdersDB {
 
+    /**
+     * Retrieves a list of orders for a specific user.
+     * Looks up the user's ID in the login table using username and password,
+     * then selects all orders from the checkout table associated with that user ID.
+     *
+     * @param user the User object representing the logged-in user
+     * @return a List of Order objects for the specified user; empty if no orders found
+     */
     public static List<Order> getOrdersByUser(User user) {
         List<Order> orders = new ArrayList<>();
 
@@ -26,11 +37,9 @@ public class OrdersDB {
                 if (rs.next()) {
                     userId = rs.getInt("id");
                 } else {
-                    System.out.println("Ingen användare hittades med angivna inloggningsuppgifter.");
-                    return orders; // Returnera tom lista
+                    return orders; // Return empty list if user not found
                 }
             }
-            int counter = 0;
 
             try (PreparedStatement orderPs = con.prepareStatement(orderSql)) {
                 orderPs.setInt(1, userId);

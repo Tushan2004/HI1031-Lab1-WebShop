@@ -1,31 +1,61 @@
 package ui;
 
-import db.ItemDB;
+import java.io.Serializable;
 
-import java.util.Collection;
+/**
+ * A simple data class that holds information about an item
+ * to be displayed in the UI. This is typically used for views
+ * where only the name and description are needed.
+ */
+public class ItemInfo implements Serializable {
 
-public class ItemInfo {
-        private String name;
-        private String description;
+    private String name;
+    private String description;
 
-        public ItemInfo(String name, String description){
-            this.name = name;
-            this.description = description;
-        }
+    /**
+     * Constructs an ItemInfo object with the given name and description.
+     *
+     * @param name        the name of the item
+     * @param description the description of the item
+     */
+    public ItemInfo(String name, String description){
+        this.name = name;
+        this.description = description;
+    }
 
-        public String getDescription(){
-            return description;
-        }
+    /**
+     * Returns the description of the item.
+     *
+     * @return the item's description
+     */
+    public String getDescription(){
+        return description;
+    }
 
-        public void setDescription(String description){
-            this.description = description;
-        }
+    /**
+     * Sets a new description for the item.
+     *
+     * @param description the new description
+     */
+    public void setDescription(String description){
+        this.description = description;
+    }
 
-        public String getName(){
-            return name;
-        }
+    /**
+     * Returns the name of the item.
+     *
+     * @return the item's name
+     */
+    public String getName(){
+        return name;
+    }
 
-        public void setName(String name){
-            this.name = name;
-        }
+    /**
+     * Sets a new name for the item.
+     *
+     * @param name the new name
+     */
+    public void setName(String name){
+        this.name = name;
+    }
 }
