@@ -1,45 +1,59 @@
-//jag ska hämta session attributen,
-// du kollar vilken användare man är inloggad med,
-// när man vet så använder du id o gör select i databasen o där ska man matcha alla användar id
-// o plocka ut dem o på något sätt visa upp det på jsp
-
 package db;
 
 import bo.Order;
+import bo.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrdersDB {
 
-    public static List<Order> getOrdersByUserId(int userId) {
+    public static List<Order> getOrdersByUser(User user) {
         List<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM checkout WHERE user_id = ?";
+
+        int userId = 0;
+        String userSql = "SELECT id FROM Login WHERE username = ? AND password = ?";
+        String orderSql = "SELECT * FROM checkout WHERE user_id = ?";
 
         try (Connection con = DBManager.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement userPs = con.prepareStatement(userSql)) {
 
-            ps.setInt(1, userId);
+            userPs.setString(1, user.getUsername());
+            userPs.setString(2, user.getPassword());
 
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Order o = new Order();
-                    o.setId(rs.getInt("id"));
-                    o.setUserId(rs.getInt("user_id"));
-                    o.setProductId(rs.getInt("product_id"));
-                    o.setName(rs.getString("name"));
-                    o.setDescr(rs.getString("descr"));
-                    o.setPrice(rs.getDouble("price"));
-                    o.setQuantity(rs.getInt("quantity"));
-                    o.setTotal(rs.getDouble("total"));
-                    orders.add(o);
+            try (ResultSet rs = userPs.executeQuery()) {
+                if (rs.next()) {
+                    userId = rs.getInt("id");
+                } else {
+                    System.out.println("Ingen användare hittades med angivna inloggningsuppgifter.");
+                    return orders; // Returnera tom lista
+                }
+            }
+            int counter = 0;
+
+            try (PreparedStatement orderPs = con.prepareStatement(orderSql)) {
+                orderPs.setInt(1, userId);
+
+                try (ResultSet rs = orderPs.executeQuery()) {
+                    while (rs.next()) {
+                        Order o = new Order();
+                        o.setId(rs.getInt("id"));
+                        o.setUserId(rs.getInt("user_id"));
+                        o.setProductId(rs.getInt("product_id"));
+                        o.setName(rs.getString("name"));
+                        o.setDescr(rs.getString("descr"));
+                        o.setPrice(rs.getDouble("price"));
+                        o.setQuantity(rs.getInt("quantity"));
+                        o.setTotal(rs.getDouble("total"));
+                        orders.add(o);
+                    }
                 }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return orders;
     }
 }

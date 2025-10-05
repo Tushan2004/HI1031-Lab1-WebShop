@@ -69,7 +69,7 @@
 </head>
 <body>
 <h2>WebShop</h2>
-<p style="text-align:right;"><a href="orders.jsp">My orders</a></p>
+<p style="text-align:right;"><a href="orders">My orders</a></p>
 <p style="text-align:right;"><a href="index.jsp">Logga ut</a></p>
 <hr>
 
