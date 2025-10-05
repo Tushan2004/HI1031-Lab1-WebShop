@@ -2,7 +2,7 @@
 <%@ page session="true" %>
 <html>
 <head>
-    <title>WebShop</title>
+    <title>MT WebShop</title>
     <style>
         body {
             font-family: Arial, sans-serif;
