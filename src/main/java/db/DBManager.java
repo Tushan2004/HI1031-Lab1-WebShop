@@ -27,7 +27,7 @@ public class DBManager {
     private static final String USER = "root";
 
     /** Database password */
-    private static final String PASS = "martin2004";
+    private static final String PASS = "";
 
     /**
      * Returns a new connection to the webshop database.
