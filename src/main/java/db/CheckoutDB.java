@@ -10,15 +10,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Handles database operations related to checkout and orders.
+ */
 public class CheckoutDB {
 
+    /**
+     * Saves a list of items in the checkout table for a specific user.
+     * Looks up the user ID in the login table using username and password,
+     * then inserts each cart item into the checkout table.
+     *
+     * @param items the list of CartItem objects to save
+     * @param user the User object representing the logged-in user
+     * @throws SQLException if a database access error occurs
+     */
     public static void addItemsToDB(List<CartItem> items, User user) throws SQLException {
         if (items == null || items.isEmpty()) {
             System.out.println("No items to save.");
             return;
         }
 
-        // 1️⃣ Hämta user_id från Login-tabellen
         int userId;
         String userSql = "SELECT id FROM Login WHERE username = ? AND password = ?";
 
@@ -33,7 +44,7 @@ public class CheckoutDB {
                     userId = rs.getInt("id");
                 } else {
                     System.out.println("No matching user found in Login table!");
-                    return; // Avbryt om ingen användare hittas
+                    return;
                 }
             }
 
@@ -55,7 +66,6 @@ public class CheckoutDB {
                 }
 
                 ps.executeBatch();
-                System.out.println("Alla varor har sparats i checkout-tabellen för användare med ID: " + userId);
             }
         }
     }
